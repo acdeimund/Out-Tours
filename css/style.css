@@ -118,8 +118,21 @@ body{
   }
 }
 
+@keyframes moveInBottom{
+  0%{
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  100%{
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
 .button:link,
 .button:visited{
+  position: relative;
   text-transform: uppercase;
   text-decoration: none;
   padding: 15px 40px;
@@ -141,4 +154,34 @@ body{
 .button-white{
   background-color: white;
   color: #777;
+}
+
+.button::after{
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s;
+}
+
+.button-white::after{
+  background-color: white;
+}
+
+.button:hover::after{
+  transform: scale(1.05);
+  opacity: 0;
+}
+
+.button-animated{
+  animation-name: moveInBottom;
+  animation-timing-function: ease-out;
+  animation-delay: 1s;
+  animation-duration: .5s;
+  animation-fill-mode: backwards;
 }
